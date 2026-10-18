@@ -29,3 +29,17 @@ def test_yakit_gostergesi():
     
     # Tam bitme durumu testi
     assert list(yakit_gostergesi(50, 25)) == [25, 0]
+
+# --- GÖREV 3 TESTLERİ ---
+def test_seyir_defteri_toplam_yakit():
+    # Toplam yakıtın 88 çıkıp çıkmadığını test ediyoruz
+    from uzay_oyunu.akis import satirlari_oku, ayristir
+    toplam_yakit = sum(y for _, _, y in ayristir(satirlari_oku("uzay_oyunu/veri/seyir.txt")))
+    assert toplam_yakit == 88
+
+def test_uzun_yolculuklar():
+    # Yakıtı 10'dan büyük olan rotaları test ediyoruz
+    from uzay_oyunu.akis import satirlari_oku, ayristir, uzun_yolculuklar
+    kayitlar = ayristir(satirlari_oku("uzay_oyunu/veri/seyir.txt"))
+    hedefler = [h for _, h, _ in uzun_yolculuklar(kayitlar, 10)]
+    assert hedefler == ['sirius', 'centauri', 'orion', 'kara_delik']
