@@ -1,6 +1,6 @@
 from typing import Iterator
 from typing import Iterator, Iterable, Tuple
-
+from functools import lru_cache
 def fibonacci() -> Iterator[int]:
     """
     Sonsuz bir Fibonacci dizisi üreten üreteç (generator) fonksiyonu.
@@ -55,3 +55,15 @@ def uzun_yolculuklar(kayitlar: Iterable[Tuple[str, str, int]], esik: int) -> Ite
     for kaynak, hedef, yakit in kayitlar:
         if yakit > esik:
             yield (kaynak, hedef, yakit)
+
+def rota_sayaci(baglantilar):
+    """Verilen bağlantılara göre lru_cache ile optimize edilmiş rota sayacı döndürür."""
+    @lru_cache(maxsize=None)
+    def rota_sayisi(gezegen, adim):
+        if adim == 0:
+            return 1
+        if gezegen not in baglantilar:
+            return 0
+        return sum(rota_sayisi(komsu, adim - 1) for komsu in baglantilar[gezegen])
+    
+    return rota_sayisi
