@@ -1,6 +1,6 @@
 from functools import reduce, partial
 
-# Hocanın istediği yolculuk fonksiyonu (partial uygulaması için)
+# Yolculuk fonksiyonu (partial uygulaması için)
 def yolculuk(mesafe, hiz):
     return mesafe / hiz
 
