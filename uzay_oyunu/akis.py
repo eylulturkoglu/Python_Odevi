@@ -1,6 +1,7 @@
 from typing import Iterator
 from typing import Iterator, Iterable, Tuple
 from functools import lru_cache
+from uzay_oyunu.dekoratorler import sure_olc
 def fibonacci() -> Iterator[int]:
     """
     Sonsuz bir Fibonacci dizisi üreten üreteç (generator) fonksiyonu.
@@ -59,6 +60,8 @@ def uzun_yolculuklar(kayitlar: Iterable[Tuple[str, str, int]], esik: int) -> Ite
 def rota_sayaci(baglantilar):
     """Verilen bağlantılara göre lru_cache ile optimize edilmiş rota sayacı döndürür."""
     @lru_cache(maxsize=None)
+
+    @sure_olc
     def rota_sayisi(gezegen, adim):
         if adim == 0:
             return 1
