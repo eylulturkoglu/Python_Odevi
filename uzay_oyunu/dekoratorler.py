@@ -15,3 +15,16 @@ def sure_olc(func):
     return sonuc
 
   return wrapper
+
+def say(func):
+  """Fonksiyonun kac kez cagrildigini sayan dekorator."""
+  cagri_sayisi = 0
+
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    nonlocal cagri_sayisi
+    cagri_sayisi += 1
+    return func(*args, **kwargs)
+
+  wrapper.cagri = lambda: cagri_sayisi
+  return wrapper

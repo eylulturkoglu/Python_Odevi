@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+tests/test_akis.py
+tests/test_dekoratorler.py
+tests/test_fonksiyonlar.py
+tests/test_tuzaklar.py
+uzay_oyunu/akis.py
+uzay_oyunu/araclar.py
+uzay_oyunu/dekoratorler.py
+uzay_oyunu/istatistik.py
+uzay_oyunu/kayit.py
+uzay_oyunu/oyun.py
+uzay_oyunu.egg-info/PKG-INFO
+uzay_oyunu.egg-info/SOURCES.txt
+uzay_oyunu.egg-info/dependency_links.txt
+uzay_oyunu.egg-info/requires.txt
+uzay_oyunu.egg-info/top_level.txt
