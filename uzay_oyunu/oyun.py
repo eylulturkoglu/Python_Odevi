@@ -1,5 +1,6 @@
 import json
 from uzay_oyunu.akis import yakit_gostergesi
+from uzay_oyunu.dekoratorler import log_cagri
 def envanter_metni(credits: bool, engines: bool, copilot: bool) -> str:
     """
     Oyuncunun elindeki özelliklere göre envanter durumunu metin olarak döndürür.
@@ -17,14 +18,14 @@ def envanter_metni(credits: bool, engines: bool, copilot: bool) -> str:
         return ""
         
     return "Sende: " + ", ".join(esyalar)
-
+@log_cagri
 def hedef_menusu(hedefler: list[str]) -> str:
     satirlar = ["Nereye gitmek istersin?"]
     for i in range(len(hedefler)):
         satirlar.append(f"[{i+1}] {hedefler[i]}")
         
     return "\n".join(satirlar)
-
+@log_cagri
 def galaksi_kur(gezegenler, baglantilar, baslangic, **kwargs):
     if baslangic not in gezegenler:
         raise ValueError("Başlangıç gezegeni listede yok!")

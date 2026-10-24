@@ -28,3 +28,20 @@ def say(func):
 
   wrapper.cagri = lambda: cagri_sayisi
   return wrapper
+
+from functools import wraps
+
+def log_cagri(func):
+    """Fonksiyon cagri bilgilerini ve donus degerini loglayan dekorator."""
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # Konumsal ve adlı argümanları formatlayalım
+        args_repr = [repr(a) for a in args]
+        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
+        signature = ", ".join(args_repr + kwargs_repr)
+        
+        print(f"-> {func.__name__}({signature})")
+        result = func(*args, **kwargs)
+        print(f"<- {func.__name__} = {result!r}")
+        return result
+    return wrapper
