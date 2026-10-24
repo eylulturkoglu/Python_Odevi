@@ -1,3 +1,5 @@
+import pytest
+from uzay_oyunu.akis import yakit_harca
 from uzay_oyunu.dekoratorler import sure_olc
 
 
@@ -17,3 +19,19 @@ def test_sure_olc_ozellikler_ve_sonuc():
 
   sonuc_adli = ornek_fonksiyon(x=10, y=5)
   assert sonuc_adli == 15
+
+
+
+
+def test_sinirla_dekoratoru():
+    # Sınır içi değerler sorunsuz çalışmalı
+    assert yakit_harca(30) == 30
+    assert yakit_harca(0) == 0
+    assert yakit_harca(100) == 100
+
+    # Sınır dışı değerler ValueError fırlatmalı
+    with pytest.raises(ValueError):
+        yakit_harca(150)
+        
+    with pytest.raises(ValueError):
+        yakit_harca(-10)

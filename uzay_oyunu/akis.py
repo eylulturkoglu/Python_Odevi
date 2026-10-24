@@ -70,3 +70,9 @@ def rota_sayaci(baglantilar):
         return sum(rota_sayisi(komsu, adim - 1) for komsu in baglantilar[gezegen])
     
     return rota_sayisi
+
+from uzay_oyunu.dekoratorler import sinirla
+
+@sinirla(0, 100)
+def yakit_harca(miktar):
+    return miktar
