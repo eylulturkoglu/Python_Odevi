@@ -1,6 +1,7 @@
 import json
 from uzay_oyunu.akis import yakit_gostergesi
 from uzay_oyunu.dekoratorler import log_cagri
+from uzay_oyunu.komutlar import KOMUTLAR
 def envanter_metni(credits: bool, engines: bool, copilot: bool) -> str:
     """
     Oyuncunun elindeki özelliklere göre envanter durumunu metin olarak döndürür.
@@ -72,6 +73,20 @@ def travel(galaksi: dict):
             if secim.lower() == 'q':
                 print("Oyundan çıkılıyor...")
                 break
+
+            # Komut kontrolü
+            if secim in KOMUTLAR:
+    fonksiyon, aciklama = KOMUTLAR[secim]
+    # Oyun durumunu (konum, baglantilar, credits vb.) içeren bir sözlük oluşturup gönderiyoruz:
+    durum = {
+        "konum": mevcut_gezegen,
+        "baglantilar": baglantilar, # (kodundaki değişken adına göre değişebilir)
+        "credits": globals().get("credits", 100),
+        "engines": globals().get("engines", []),
+        "copilot": globals().get("copilot", "Yok")
+    }
+    fonksiyon(durum)
+    continue  # Menüyü tekrar göstermek için döngünün başına dön
                 
             # Basit bir seçim kontrolü
             if secim.isdigit() and 1 <= int(secim) <= len(hedefler):
